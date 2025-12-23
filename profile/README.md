@@ -23,8 +23,6 @@ We welcome contributions! You can:
 - Contribute to SDKs and examples.
 - Join discussions and help improve our documentation.
 
-Please see our [contribution guidelines](https://github.com/omophub/api/docs/CONTRIBUTING.md) for more details.
-
 
 ### Compliance & Security
 
