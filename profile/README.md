@@ -1,42 +1,155 @@
-### What is OMOPHub?
+# OMOPHub
 
-OMOPHub is building the essential platform for healthcare data developers, starting with a best-in-class OMOP Standartized Vocabulary API and expanding into a suite of secure, compliant, and developer-friendly data services. OMOPHub empowers healthcare organizations, researchers, and developers with reliable, scalable, and easy-to-integrate APIs, SDKs, and tools.
+**OMOP Vocabulary API — Query ATHENA Vocabularies Without a Database**
 
-### What is here
+[![Website](https://img.shields.io/badge/Website-omophub.com-blue)](https://omophub.com)
+[![Documentation](https://img.shields.io/badge/Docs-docs.omophub.com-green)](https://docs.omophub.com)
+[![Status](https://img.shields.io/badge/Status-Operational-brightgreen)](https://omophub.com/status)
 
-- **SDKs & Examples**: Official SDKs and code samples in Python, R, JavaScript, and more, to accelerate your integration.
-- **OpenAPI Docs & Postman Collections**: Interactive documentation and ready-to-use collections for rapid prototyping.
-- **Community & Support**: Public issue tracker for feature requests, bug reports, and community discussions.
+OMOPHub provides instant REST API access to OHDSI ATHENA standardized vocabularies — SNOMED CT, ICD-10, RxNorm, LOINC, and 100+ medical terminologies. Search concepts, build mappings, and automate ETL pipelines without setting up a local database.
 
+---
 
-### Useful Resources
+## Why OMOPHub?
 
-- **Developer Dashboard**: [OMOPHub](https://omophub.com) API keys, logs, usage statistics.
-- **Documentation**: [docs.omophub.com](https://docs.omophub.com) for setup guides, API references, and tutorials.
-- **Examples**: Examples of SDKs and client libraries [github.com/orgs/omophub/repositories](https://github.com/orgs/omophub/repositories).
+Working with OMOP vocabularies traditionally requires downloading multi-gigabyte ATHENA files and maintaining a PostgreSQL database. **OMOPHub eliminates this overhead:**
 
+| Traditional Approach | With OMOPHub |
+|---------------------|--------------|
+| Download 5GB+ vocabulary files | Install SDK, start coding |
+| Set up & maintain PostgreSQL | Simple REST API calls |
+| Manual updates | Always current data |
 
-### Contribution Guidelines
+**Perfect for:** ETL development, concept set building, phenotype definitions, AI/LLM integration, and any workflow requiring vocabulary access without infrastructure.
 
-We welcome contributions! You can:
-- Submit issues and feature requests in the [API repository](https://github.com/omophub/api).
-- Contribute to SDKs and examples.
-- Join discussions and help improve our documentation.
+---
 
+## Quick Start
 
-### Compliance & Security
+**Python:**
+```python
+import omophub
 
-- Built for HIPAA, SOC 2, and GDPR compliance from day one.
-- All authentication, logging, and data handling follow strict healthcare security standards.
-- Audit trails and privacy-by-design architecture.
+client = omophub.OMOPHub()
 
+# Search across vocabularies
+results = client.search.basic("diabetes mellitus", vocabulary_ids=["SNOMED", "ICD10CM"])
 
-### Why OMOPHub?
+# Get concept with relationships
+concept = client.concepts.get(201826)  # Type 2 diabetes mellitus
+```
 
-- **API-first**: Everything is accessible via robust, well-documented APIs.
-- **Developer-centric**: SDKs, examples, and a dashboard designed for productivity.
-- **Compliance-ready**: Security and privacy are at the core of our platform.
-- **Community-driven**: We value feedback and contributions from the healthcare and open-source communities.
+**R:**
+```r
+library(omophub)
 
+client <- OMOPHubClient$new()
 
-For questions, support, or partnership inquiries, please open an issue or contact us via the channels listed in our documentation. 
+# Map source codes to standard concepts
+mappings <- client$mappings$get(201826, target_vocabulary = "ICD10CM")
+```
+
+**[Get your API key →](https://dashboard.omophub.com/register)**
+
+---
+
+## Official SDKs
+
+| SDK | Package | Repository |
+|-----|---------|------------|
+| **Python** | [![PyPI](https://img.shields.io/pypi/v/omophub)](https://pypi.org/project/omophub/) | [omophub-python](https://github.com/OMOPHub/omophub-python) |
+| **R** | [![CRAN](https://img.shields.io/cran/v/omophub)](https://cran.r-project.org/package=omophub) | [omophub-R](https://github.com/OMOPHub/omophub-R) |
+
+---
+
+## Supported Vocabularies
+
+Access all major medical terminologies synced with official ATHENA releases:
+
+**Clinical:** SNOMED CT, ICD-10-CM, ICD-10-PCS, ICD-9-CM, Read Codes  
+**Drugs:** RxNorm, RxNorm Extension, NDC, ATC, dm+d  
+**Labs:** LOINC  
+**Procedures:** HCPCS, ICD-10-PCS  
+**Other:** MeSH, UCUM, Gender, Race, and 90+ more
+
+> **Note:** Licensed vocabularies (CPT, MedDRA) are not available due to license restrictions.
+
+**[View versions supported →](https://docs.omophub.com/vocabulary-versions)**
+
+---
+
+## Key Features
+
+### API Capabilities
+- **Concept Search** — Full-text search with filters by vocabulary, domain, concept class
+- **Hierarchy Navigation** — Traverse ancestors, descendants, and relationships
+- **Cross-Vocabulary Mappings** — Map between ICD-10, SNOMED, RxNorm, and more
+- **Batch Operations** — Process thousands of concepts in single requests
+- **PHOEBE Support** — Recommended concept sets for phenotyping
+
+### Performance & Reliability
+- **< 50ms response time** for most queries
+- **99.9% uptime** with global edge distribution
+- **Release sync** with ATHENA vocabulary releases
+
+### Healthcare-Grade Security
+- **HIPAA & GDPR compliant** architecture
+- **End-to-end encryption** for all API traffic
+- **Immutable audit trails** with 7-year retention
+- **SOC 2 Type II** controls
+
+---
+
+## Use Cases
+
+- **ETL Development** — Look up concepts and validate mappings without database access
+- **Phenotype Building** — Explore hierarchies and build concept sets programmatically
+- **Clinical Research** — Query vocabularies for cohort definitions
+- **AI/LLM Integration** — Ground medical AI models with structured vocabulary data
+- **Data Quality** — Validate codes and check standard concept mappings
+
+---
+
+## Independence & Infrastructure
+
+OMOPHub is an **independent service** — we are not affiliated with OHDSI or ATHENA. We operate on dedicated infrastructure, separate from the official ATHENA vocabulary download service.
+
+While we use the same publicly available OHDSI vocabulary data, OMOPHub is a third-party API built to provide convenient programmatic access without the overhead of local database management.
+
+---
+
+## Is it free?
+
+**Free for personal and academic use.** Researchers, students, and individual developers can access our full vocabulary API at no cost.
+
+---
+
+## Resources
+
+| Resource | Link |
+|----------|------|
+| 📚 **Documentation** | [docs.omophub.com](https://docs.omophub.com) |
+| 🚀 **Quick Start Guide** | [Getting Started](https://docs.omophub.com/quickstart) |
+| 📖 **API Reference** | [API Docs](https://docs.omophub.com/api-reference) |
+| 🔧 **Concept Lookup Tool** | [Online Tool](https://omophub.com/tools/concept-lookup) |
+
+---
+
+## Support
+
+- **Issues & Bugs:** Open an issue in the relevant SDK repository
+- **General Questions:** [Contact Us](https://omophub.com/contact)
+- **Enterprise Support:** support@omophub.com
+
+---
+
+## Contributing
+
+We welcome contributions to our open-source SDKs:
+
+1. Fork the repository
+2. Create a feature branch
+3. Submit a pull request
+
+See individual SDK repositories for contribution guidelines.
+
