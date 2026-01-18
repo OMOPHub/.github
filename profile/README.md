@@ -128,10 +128,10 @@ While we use the same publicly available OHDSI vocabulary data, OMOPHub is a thi
 
 | Resource | Link |
 |----------|------|
-| 📚 **Documentation** | [docs.omophub.com](https://docs.omophub.com) |
-| 🚀 **Quick Start Guide** | [Getting Started](https://docs.omophub.com/quickstart) |
-| 📖 **API Reference** | [API Docs](https://docs.omophub.com/api-reference) |
-| 🔧 **Concept Lookup Tool** | [Online Tool](https://omophub.com/tools/concept-lookup) |
+| **Documentation** | [docs.omophub.com](https://docs.omophub.com) |
+| **Quick Start Guide** | [Getting Started](https://docs.omophub.com/quickstart) |
+| **API Reference** | [API Docs](https://docs.omophub.com/api-reference) |
+| **Concept Lookup Tool** | [Online Tool](https://omophub.com/tools/concept-lookup) |
 
 ---
 
