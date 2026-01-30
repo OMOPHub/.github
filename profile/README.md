@@ -34,10 +34,13 @@ import omophub
 client = omophub.OMOPHub()
 
 # Search across vocabularies
-results = client.search.basic("diabetes mellitus", vocabulary_ids=["SNOMED", "ICD10CM"])
+results = client.search.basic("diabetes mellitus", vocabulary_ids=["SNOMED", "ICD10CM"], standard_concept="S", page_size=10)
 
 # Get concept with relationships
 concept = client.concepts.get(201826)  # Type 2 diabetes mellitus
+
+# Map SNOMED concept to ICD-10-CM
+mappings = client.mappings.get(201826, target_vocabulary="ICD10CM")
 ```
 
 **R:**
@@ -46,6 +49,9 @@ library(omophub)
 
 # Initialize client (uses OMOPHUB_API_KEY env var)
 client <- OMOPHubClient$new()
+
+# Search across vocabularies
+results <- client$search$basic("diabetes mellitus", vocabulary_ids = c("SNOMED", "ICD10CM"), standard_concept = "S", page_size = 10)
 
 # Map source codes to standard concepts
 mappings <- client$mappings$get(201826, target_vocabulary = "ICD10CM")
