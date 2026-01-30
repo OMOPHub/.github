@@ -30,6 +30,7 @@ Working with OMOP vocabularies traditionally requires downloading multi-gigabyte
 ```python
 import omophub
 
+# Initialize client (uses OMOPHUB_API_KEY env var)
 client = omophub.OMOPHub()
 
 # Search across vocabularies
@@ -43,6 +44,7 @@ concept = client.concepts.get(201826)  # Type 2 diabetes mellitus
 ```r
 library(omophub)
 
+# Initialize client (uses OMOPHUB_API_KEY env var)
 client <- OMOPHubClient$new()
 
 # Map source codes to standard concepts
@@ -120,7 +122,7 @@ While we use the same publicly available OHDSI vocabulary data, OMOPHub is a thi
 
 ## Is it free?
 
-**Free for personal and academic use.** Researchers, students, and individual developers can access our full vocabulary API at no cost.
+OMOPHub offers a free plan with 5,000 API calls per month and full API access.
 
 ---
 
