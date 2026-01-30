@@ -140,8 +140,7 @@ OMOPHub offers a free plan with 5,000 API calls per month and full API access.
 ## Support
 
 - **Issues & Bugs:** Open an issue in the relevant SDK repository
-- **General Questions:** [Contact Us](https://omophub.com/contact)
-- **Enterprise Support:** support@omophub.com
+- **General Questions and Requests:** [Contact Us](https://omophub.com/contact)
 
 ---
 
