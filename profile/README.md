@@ -1,12 +1,12 @@
 # OMOPHub
 
-**OMOP Vocabulary API — Query ATHENA Vocabularies Without a Database**
+**OMOP Vocabulary API - Query ATHENA Vocabularies Without a Database**
 
 [![Website](https://img.shields.io/badge/Website-omophub.com-blue)](https://omophub.com)
 [![Documentation](https://img.shields.io/badge/Docs-docs.omophub.com-green)](https://docs.omophub.com)
 [![Status](https://img.shields.io/badge/Status-Operational-brightgreen)](https://omophub.com/status)
 
-OMOPHub provides instant REST API access to OHDSI ATHENA standardized vocabularies — SNOMED CT, ICD-10, RxNorm, LOINC, and 100+ medical terminologies. Search concepts, build mappings, and automate ETL pipelines without setting up a local database.
+OMOPHub provides instant REST API access to OHDSI ATHENA standardized vocabularies - SNOMED CT, ICD-10, RxNorm, LOINC, and 100+ medical terminologies. Search concepts, build mappings, and automate ETL pipelines without setting up a local database.
 
 ---
 
@@ -89,11 +89,11 @@ Access all major medical terminologies synced with official ATHENA releases:
 ## Key Features
 
 ### API Capabilities
-- **Concept Search** — Full-text search with filters by vocabulary, domain, concept class
-- **Hierarchy Navigation** — Traverse ancestors, descendants, and relationships
-- **Cross-Vocabulary Mappings** — Map between ICD-10, SNOMED, RxNorm, and more
-- **Batch Operations** — Process thousands of concepts in single requests
-- **PHOEBE Support** — Recommended concept sets for phenotyping
+- **Concept Search** - Full-text search with filters by vocabulary, domain, concept class
+- **Hierarchy Navigation** - Traverse ancestors, descendants, and relationships
+- **Cross-Vocabulary Mappings** - Map between ICD-10, SNOMED, RxNorm, and more
+- **Batch Operations** - Process thousands of concepts in single requests
+- **PHOEBE Support** - Recommended concept sets for phenotyping
 
 ### Performance & Reliability
 - **< 50ms response time** for most queries
@@ -110,17 +110,17 @@ Access all major medical terminologies synced with official ATHENA releases:
 
 ## Use Cases
 
-- **ETL Development** — Look up concepts and validate mappings without database access
-- **Phenotype Building** — Explore hierarchies and build concept sets programmatically
-- **Clinical Research** — Query vocabularies for cohort definitions
-- **AI/LLM Integration** — Ground medical AI models with structured vocabulary data
-- **Data Quality** — Validate codes and check standard concept mappings
+- **ETL Development** - Look up concepts and validate mappings without database access
+- **Phenotype Building** - Explore hierarchies and build concept sets programmatically
+- **Clinical Research** - Query vocabularies for cohort definitions
+- **AI/LLM Integration** - Ground medical AI models with structured vocabulary data
+- **Data Quality** - Validate codes and check standard concept mappings
 
 ---
 
 ## Independence & Infrastructure
 
-OMOPHub is an **independent service** — we are not affiliated with OHDSI or ATHENA. We operate on dedicated infrastructure, separate from the official ATHENA vocabulary download service.
+OMOPHub is an **independent service** - we are not affiliated with OHDSI or ATHENA. We operate on dedicated infrastructure, separate from the official ATHENA vocabulary download service.
 
 While we use the same publicly available OHDSI vocabulary data, OMOPHub is a third-party API built to provide convenient programmatic access without the overhead of local database management.
 
