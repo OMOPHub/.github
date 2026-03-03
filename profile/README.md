@@ -128,7 +128,7 @@ While we use the same publicly available OHDSI vocabulary data, OMOPHub is a thi
 
 ## Is it free?
 
-OMOPHub offers a free plan with 5,000 API calls per month and full API access.
+OMOPHub offers a free plan with 3,000 API calls per month and full API access.
 
 ---
 
