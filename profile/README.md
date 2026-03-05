@@ -57,6 +57,29 @@ results <- client$search$basic("diabetes mellitus", vocabulary_ids = c("SNOMED",
 mappings <- client$mappings$get(201826, target_vocabulary = "ICD10CM")
 ```
 
+**AI Agents (MCP):**
+
+Give Claude, Cursor, or any MCP-compatible AI agent direct access to OMOP vocabularies:
+
+```json
+{
+  "mcpServers": {
+    "omophub": {
+      "command": "npx",
+      "args": ["-y", "@omophub/omophub-mcp"],
+      "env": {
+        "OMOPHUB_API_KEY": "oh_your_key_here"
+      }
+    }
+  }
+}
+```
+
+Then just ask your AI agent:
+> *"Map ICD-10 code E11.9 to SNOMED"*  
+> *"Build a concept set for Type 2 diabetes including all descendants"*  
+> *"What's the OMOP concept ID for metformin?"*
+
 **[Get your API key →](https://dashboard.omophub.com/register)**
 
 ---
@@ -67,6 +90,43 @@ mappings <- client$mappings$get(201826, target_vocabulary = "ICD10CM")
 |-----|---------|------------|
 | **Python** | [![PyPI](https://img.shields.io/pypi/v/omophub)](https://pypi.org/project/omophub/) | [omophub-python](https://github.com/OMOPHub/omophub-python) |
 | **R** | [![CRAN](https://img.shields.io/cran/v/omophub)](https://cran.r-project.org/package=omophub) | [omophub-R](https://github.com/OMOPHub/omophub-R) |
+| **MCP Server** | [![npm](https://img.shields.io/npm/v/@omophub/omophub-mcp)](https://www.npmjs.com/package/@omophub/omophub-mcp) | [omophub-mcp](https://github.com/OMOPHub/omophub-mcp) |
+
+---
+
+## MCP Server — OMOP Vocabularies for AI Agents
+
+The OMOPHub MCP Server connects Claude, Cursor, VS Code, and any MCP-compatible AI client directly to the full OHDSI vocabulary. No SQL. No database. Just ask.
+
+```
+You: "Map ICD-10 code E11.9 to SNOMED"
+
+Claude: Found it — E11.9 (Type 2 diabetes mellitus without complications)
+        maps to SNOMED concept 201826 via standard 'Maps to' relationship.
+```
+
+### What your AI agent can do
+
+| Tool | What it does |
+|------|-------------|
+| `search_concepts` | Search for medical concepts by name across all vocabularies |
+| `get_concept` | Get full details about any OMOP concept by ID |
+| `get_concept_by_code` | Look up a concept from a source code (e.g., ICD-10 `E11.9`) |
+| `map_concept` | Map between ICD-10, SNOMED, RxNorm, LOINC, and 100+ vocabularies |
+| `get_hierarchy` | Navigate ancestors and descendants for phenotype definitions |
+| `list_vocabularies` | Browse the full vocabulary catalog with statistics |
+
+### Install
+
+```bash
+# Claude Desktop / Cursor / VS Code — add to your MCP config:
+npx -y @omophub/omophub-mcp
+
+# Docker
+docker run -e OMOPHUB_API_KEY=oh_your_key_here -p 3100:3100 omophub/omophub-mcp
+```
+
+Full setup instructions for Claude Desktop, Cursor, VS Code, and Docker: **[omophub-mcp →](https://github.com/OMOPHub/omophub-mcp)**
 
 ---
 
@@ -113,7 +173,7 @@ Access all major medical terminologies synced with official ATHENA releases:
 - **ETL Development** - Look up concepts and validate mappings without database access
 - **Phenotype Building** - Explore hierarchies and build concept sets programmatically
 - **Clinical Research** - Query vocabularies for cohort definitions
-- **AI/LLM Integration** - Ground medical AI models with structured vocabulary data
+- **AI/LLM Integration** - Ground medical AI models with structured vocabulary data; connect via MCP for agent-native access
 - **Data Quality** - Validate codes and check standard concept mappings
 
 ---
@@ -159,4 +219,3 @@ We welcome contributions to our open-source SDKs:
 3. Submit a pull request
 
 See individual SDK repositories for contribution guidelines.
-
