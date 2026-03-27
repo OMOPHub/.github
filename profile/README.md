@@ -95,14 +95,14 @@ Then just ask your AI agent:
 
 ---
 
-## MCP Server — OMOP Vocabularies for AI Agents
+## MCP Server - OMOP Vocabularies for AI Agents
 
 The OMOPHub MCP Server connects Claude, Cursor, VS Code, and any MCP-compatible AI client directly to the full OHDSI vocabulary. No SQL. No database. Just ask.
 
 ```
 You: "Map ICD-10 code E11.9 to SNOMED"
 
-Claude: Found it — E11.9 (Type 2 diabetes mellitus without complications)
+Claude: Found it - E11.9 (Type 2 diabetes mellitus without complications)
         maps to SNOMED concept 201826 via standard 'Maps to' relationship.
 ```
 
@@ -111,7 +111,7 @@ Claude: Found it — E11.9 (Type 2 diabetes mellitus without complications)
 | Tool | What it does |
 |------|-------------|
 | `search_concepts` | Search for medical concepts by name across all vocabularies |
-| `semantic_search` | Natural language search with neural embeddings — "heart attack" finds "Myocardial infarction" |
+| `semantic_search` | Natural language search with neural embeddings - "heart attack" finds "Myocardial infarction" |
 | `get_concept` | Get full details about any OMOP concept by ID |
 | `get_concept_by_code` | Look up a concept from a source code (e.g., ICD-10 `E11.9`) |
 | `explore_concept` | Get concept details, hierarchy, and cross-vocabulary mappings in one call |
@@ -123,7 +123,7 @@ Claude: Found it — E11.9 (Type 2 diabetes mellitus without complications)
 ### Install
 
 ```bash
-# Claude Desktop / Cursor / VS Code — add to your MCP config:
+# Claude Desktop / Cursor / VS Code - add to your MCP config:
 npx -y @omophub/omophub-mcp
 
 # Docker
