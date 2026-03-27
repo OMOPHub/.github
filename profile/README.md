@@ -76,9 +76,10 @@ Give Claude, Cursor, or any MCP-compatible AI agent direct access to OMOP vocabu
 ```
 
 Then just ask your AI agent:
-> *"Map ICD-10 code E11.9 to SNOMED"*  
-> *"Build a concept set for Type 2 diabetes including all descendants"*  
-> *"What's the OMOP concept ID for metformin?"*
+> *"Map ICD-10 code E11.9 to SNOMED"*
+> *"Build a concept set for Type 2 diabetes including all descendants"*
+> *"Find concepts related to heart attack"* (semantic search)
+> *"Give me everything about SNOMED concept 201826"* (explore)
 
 **[Get your API key →](https://dashboard.omophub.com/register)**
 
@@ -110,8 +111,11 @@ Claude: Found it — E11.9 (Type 2 diabetes mellitus without complications)
 | Tool | What it does |
 |------|-------------|
 | `search_concepts` | Search for medical concepts by name across all vocabularies |
+| `semantic_search` | Natural language search with neural embeddings — "heart attack" finds "Myocardial infarction" |
 | `get_concept` | Get full details about any OMOP concept by ID |
 | `get_concept_by_code` | Look up a concept from a source code (e.g., ICD-10 `E11.9`) |
+| `explore_concept` | Get concept details, hierarchy, and cross-vocabulary mappings in one call |
+| `find_similar_concepts` | Find related concepts using semantic, lexical, or hybrid similarity |
 | `map_concept` | Map between ICD-10, SNOMED, RxNorm, LOINC, and 100+ vocabularies |
 | `get_hierarchy` | Navigate ancestors and descendants for phenotype definitions |
 | `list_vocabularies` | Browse the full vocabulary catalog with statistics |
@@ -150,9 +154,11 @@ Access all major medical terminologies synced with official ATHENA releases:
 
 ### API Capabilities
 - **Concept Search** - Full-text search with filters by vocabulary, domain, concept class
+- **Semantic Search** - Natural language queries using neural embeddings (e.g., "high blood sugar" finds "Hyperglycemia")
+- **Similar Concepts** - Find related concepts by semantic, lexical, or hybrid similarity
 - **Hierarchy Navigation** - Traverse ancestors, descendants, and relationships
 - **Cross-Vocabulary Mappings** - Map between ICD-10, SNOMED, RxNorm, and more
-- **Batch Operations** - Process thousands of concepts in single requests
+- **Batch Operations** - Process thousands of concepts in single requests (lexical and semantic)
 - **PHOEBE Support** - Recommended concept sets for phenotyping
 
 ### Performance & Reliability
