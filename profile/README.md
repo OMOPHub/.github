@@ -59,6 +59,30 @@ results <- client$search$basic("diabetes mellitus", vocabulary_ids = c("SNOMED",
 mappings <- client$mappings$get(201826, target_vocabulary = "ICD10CM")
 ```
 
+**Node.js / TypeScript:**
+
+```ts
+import { OMOPHub } from '@omophub/omophub-node';
+
+// Initialize client (uses OMOPHUB_API_KEY env var)
+const client = new OMOPHub();
+
+// Search across vocabularies
+const { data: results } = await client.search.basic('diabetes mellitus', {
+  vocabularyIds: ['SNOMED', 'ICD10CM'],
+  standardConcept: 'S',
+  pageSize: 10,
+});
+
+// Get concept with relationships
+const { data: concept } = await client.concepts.get(201826); // Type 2 diabetes mellitus
+
+// Map SNOMED concept to ICD-10-CM
+const { data: mappings } = await client.mappings.get(201826, {
+  targetVocabulary: 'ICD10CM',
+});
+```
+
 **AI Agents (MCP):**
 
 Give Claude, Cursor, or any MCP-compatible AI agent direct access to OMOP vocabularies:
@@ -90,11 +114,12 @@ Then just ask your AI agent:
 
 ## Official SDKs
 
-| SDK            | Package                                                                                                         | Repository                                                  |
-| -------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Python**     | [![PyPI](https://img.shields.io/pypi/v/omophub)](https://pypi.org/project/omophub/)                             | [omophub-python](https://github.com/OMOPHub/omophub-python) |
-| **R**          | [![CRAN](https://img.shields.io/cran/v/omophub)](https://cran.r-project.org/package=omophub)                    | [omophub-R](https://github.com/OMOPHub/omophub-R)           |
-| **MCP Server** | [![npm](https://img.shields.io/npm/v/@omophub/omophub-mcp)](https://www.npmjs.com/package/@omophub/omophub-mcp) | [omophub-mcp](https://github.com/OMOPHub/omophub-mcp)       |
+| SDK            | Package                                                                                                           | Repository                                                  |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Python**     | [![PyPI](https://img.shields.io/pypi/v/omophub)](https://pypi.org/project/omophub/)                               | [omophub-python](https://github.com/OMOPHub/omophub-python) |
+| **R**          | [![CRAN](https://img.shields.io/cran/v/omophub)](https://cran.r-project.org/package=omophub)                      | [omophub-R](https://github.com/OMOPHub/omophub-R)           |
+| **Node.js**    | [![npm](https://img.shields.io/npm/v/@omophub/omophub-node)](https://www.npmjs.com/package/@omophub/omophub-node) | [omophub-node](https://github.com/OMOPHub/omophub-node)     |
+| **MCP Server** | [![npm](https://img.shields.io/npm/v/@omophub/omophub-mcp)](https://www.npmjs.com/package/@omophub/omophub-mcp)   | [omophub-mcp](https://github.com/OMOPHub/omophub-mcp)       |
 
 ---
 
@@ -217,6 +242,42 @@ tbl <- client$fhir$resolve_batch(
 # source/standard concept, target CDM table, status, and similarity score.
 ```
 
+**Node.js / TypeScript:**
+
+```ts
+import { OMOPHub } from '@omophub/omophub-node';
+
+const client = new OMOPHub();
+
+// Single Coding -> standard concept + CDM target table
+const { data: result } = await client.fhir.resolve({
+  system: 'http://snomed.info/sct',
+  code: '44054006',
+  resourceType: 'Condition',
+});
+console.log(result?.resolution.standard_concept.concept_name); // "Type 2 diabetes mellitus"
+console.log(result?.resolution.target_table); // "condition_occurrence"
+
+// Batch up to 100 codings in one call
+const { data: batch } = await client.fhir.resolveBatch([
+  { system: 'http://snomed.info/sct', code: '44054006' },
+  { system: 'http://loinc.org', code: '2339-0' },
+  { system: 'http://hl7.org/fhir/sid/icd-10-cm', code: 'E11.9' },
+]);
+
+// CodeableConcept with OHDSI vocabulary preference ranking (up to 20 codings)
+const { data: cc } = await client.fhir.resolveCodeableConcept(
+  [
+    { system: 'http://snomed.info/sct', code: '44054006' },
+    { system: 'http://hl7.org/fhir/sid/icd-10-cm', code: 'E11.9' },
+  ],
+  { resourceType: 'Condition' }
+);
+// SNOMED wins over ICD-10 per OHDSI preference order
+```
+
+The Node SDK accepts either the flat form (`{ system, code }`) or the nested FHIR form (`{ coding: { system, code, ... } }`) for `resolve()` - useful when piping `Coding` objects straight from FHIR client libraries.
+
 **Type interop (Python):** The resolver accepts any Coding-like input via duck typing - plain dict, omophub's lightweight `Coding` TypedDict, or `fhir.resources` / `fhirpy` objects with no extra conversion. Neither library is a required dependency.
 
 **[FHIR Integration guide →](https://docs.omophub.com/guides/integration/fhir-integration)** · **[FHIR → OMOP Standardization workflow →](https://docs.omophub.com/guides/workflows/fhir-to-omop)**
@@ -232,6 +293,8 @@ Access all major medical terminologies synced with official ATHENA releases:
 **Labs:** LOINC  
 **Procedures:** HCPCS, ICD-10-PCS  
 **Other:** MeSH, UCUM, Gender, Race, and 90+ more
+
+> **Note:** Licensed vocabularies (CPT, MedDRA) are not available due to license restrictions.
 
 **[View versions supported →](https://docs.omophub.com/vocabulary-versions)**
 
