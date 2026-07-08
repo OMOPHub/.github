@@ -1,6 +1,7 @@
 # OMOPHub
 
-**OMOP Vocabulary API - Query ATHENA Vocabularies Without a Database**
+**Search, map, and resolve medical vocabularies.** 
+The OMOPHub is a terminology layer for OMOP, FHIR, and healthcare AI with 11M+ concepts through one managed API.
 
 [![Website](https://img.shields.io/badge/Website-omophub.com-blue)](https://omophub.com)
 [![Documentation](https://img.shields.io/badge/Docs-docs.omophub.com-green)](https://docs.omophub.com)
