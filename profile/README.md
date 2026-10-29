@@ -7,7 +7,7 @@ The OMOPHub is a terminology layer for OMOP, FHIR, and healthcare AI with 11M+ c
 [![Documentation](https://img.shields.io/badge/Docs-docs.omophub.com-green)](https://docs.omophub.com)
 [![Status](https://img.shields.io/badge/Status-Operational-brightgreen)](https://omophub.com/status)
 
-OMOPHub provides instant REST API access to OHDSI ATHENA standardized vocabularies - SNOMED CT, ICD-10, RxNorm, LOINC, and 100+ medical terminologies. Search concepts, build mappings, and automate ETL pipelines without setting up a local database.
+OMOPHub provides instant REST API access to OHDSI ATHENA standardized vocabularies - SNOMED CT, ICD-10, RxNorm, LOINC, and 120+ medical terminologies. Search concepts, build mappings, and automate ETL pipelines without setting up a local database.
 
 ---
 
@@ -145,7 +145,7 @@ Claude: Found it - E11.9 (Type 2 diabetes mellitus without complications)
 | `get_concept_by_code`           | Look up a concept from a source code (e.g., ICD-10 `E11.9`)                                   |
 | `explore_concept`               | Get concept details, hierarchy, and cross-vocabulary mappings in one call                     |
 | `find_similar_concepts`         | Find related concepts using semantic, lexical, or hybrid similarity                           |
-| `map_concept`                   | Map between ICD-10, SNOMED, RxNorm, LOINC, and 100+ vocabularies                              |
+| `map_concept`                   | Map between ICD-10, SNOMED, RxNorm, LOINC, and 120+ vocabularies                              |
 | `get_hierarchy`                 | Navigate ancestors and descendants for phenotype definitions                                  |
 | `list_vocabularies`             | Browse the full vocabulary catalog with statistics                                            |
 | `fhir_resolve`                  | Resolve a FHIR `Coding` to an OMOP standard concept + CDM target table in one call            |
